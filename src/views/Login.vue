@@ -3,8 +3,6 @@
 
 <script>
 import axios from "axios";
-// import global from "../global.js"
-import Index from "./Index.vue"
 export default {
     data() {
         return {
@@ -26,13 +24,12 @@ export default {
                         localStorage.setItem("roleName", response.data.result.roleName);
                     },
                     error => {
-                        console.log("FAIL", error.message);
+                        console.log("FAIL 1", error.message);
                     }
                 )
             }
         } else {
-            // alert(`${token}`);
-            window.location.href = "http://localhost:8080/#/Index";
+            window.location.href = "http://localhost:8080/#/flowUserMobile/appCount";
         }
     },
 };

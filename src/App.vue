@@ -15,27 +15,18 @@
         </div>
     </header>
     <nav>
-        <router-link to="/NewApplication" class="top-bar-link">
-            <span>新申请</span>
+        <router-link to="/flowUserMobile/bussinessList" class="top-bar-link">
+            <h2>业务申请</h2>
         </router-link>
-
-        <router-link to="/NotSubmitted" class="top-bar-link">
-            <span>未提交</span>
-        </router-link>
-
-        <router-link to="/InProcess" class="top-bar-link">
-            <span>进行中</span>
-        </router-link>
-
-        <router-link to="/Completed" class="top-bar-link">
-            <span>已完成</span>
-        </router-link>
-
+        <h2>未提交（{{ uncommitCount }}）</h2>
+        <h2>已提交（{{ committedCount }}）</h2>
+        <h2>已完成（{{ finishCount }}）</h2>
     </nav>
     <router-view />
 
 </template>
 <script>
+import axios from "axios";
 export default {
     data() {
         return {
@@ -43,14 +34,26 @@ export default {
             userCode: "",
             deptName: "",
             roleName: "",
+            uncommitCount: 0,
+            committedCount: 0,
+            finishCount: 0,
         };
     },
     mounted() {
-        // 获取四个对象
         this.userName = localStorage.getItem("userName");
         this.userCode = localStorage.getItem("userCode");
         this.deptName = localStorage.getItem("deptName");
         this.roleName = localStorage.getItem("roleName");
+        axios.get("http://jhsy.whu.edu.cn/jhsy6webservice/api/flowUserMobile/appCount").then(
+            response => {
+                this.uncommitCount = response.data.result.uncommit;
+                this.committedCount = response.data.result.committed;
+                this.finishCount = response.data.result.finish;
+            },
+            error => {
+                console.log("FAIL 2", error.message);
+            }
+        )
     },
 };
 </script>

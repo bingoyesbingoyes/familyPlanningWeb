@@ -1,10 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
-import Index from "../views/Index.vue";
-import NewApplication from "../views/NewApplication.vue";
-import NotSubmitted from "../views/NotSubmitted.vue";
-import InProcess from "../views/InProcess.vue";
-import Completed from "../views/Completed.vue";
+import AppCount from "../views/AppCount.vue";
+import BusinessList from "../views/BusinessList.vue";
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
@@ -13,24 +10,12 @@ const router = createRouter({
             component: Login,
         },
         {
-            path: "/Index",
-            component: Index,
+            path: "/flowUserMobile/appCount",
+            component: AppCount,
         },
         {
-            path: "/NewApplication",
-            component: NewApplication,
-        },
-        {
-            path: "/NotSubmitted",
-            component: NotSubmitted,
-        },
-        {
-            path: "/InProcess",
-            component: InProcess,
-        },
-        {
-            path: "/Completed",
-            component: Completed,
+            path: "/flowUserMobile/bussinessList",
+            component: BusinessList,
         },
     ],
 });
